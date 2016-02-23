@@ -16,6 +16,7 @@ cabal-version:       >=1.10
 library
   hs-source-dirs:      src
   exposed-modules:     Voting.Ranked.Borda
+                     , Voting.Ranked.IRV
   build-depends:       base >= 4.7 && < 5
                      , mtl >= 2.2 && < 3
                      , containers >= 0.5 && < 1
