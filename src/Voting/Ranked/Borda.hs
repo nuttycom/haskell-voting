@@ -16,8 +16,8 @@ import Voting.Ranked.Types
 data BallotError a = BallotCandidateMismatch (S.Set a) (S.Set a)
   
 countVotes :: (Traversable f, Ord a, MonadError (BallotError a) m) => f (Ballot a) -> m a
-countVotes votes = do
-  rankings <- evalStateT (traverse allocateRankings votes) Nothing
+countVotes ballots = do
+  rankings <- evalStateT (traverse allocateRankings ballots) Nothing
   let ranked = M.toList $ M.unionsWith (+) (toList rankings)
       maxRanked = maximumBy (comparing snd) ranked
   pure $ fst maxRanked
